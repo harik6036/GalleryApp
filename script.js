@@ -1,3 +1,6 @@
+// const shortid = require('shortid');
+ 
+
 let video=document.querySelector("video");
 let recordButtonCont = document.querySelector(".record-btn-cont");
 let recordButton = document.querySelector(".record-btn");
@@ -36,18 +39,28 @@ window.navigator.mediaDevices.getUserMedia(constrains).then((stream)=>{
  recorder.addEventListener("stop",(e)=>{
     //when we press on stop, we need to convert  media chunkz data to video.
 
-    let blob=new Blob(chunks, {type:"video/mp4"});  //this will convert chunks into mp4  
+    let blob=new Blob(chunks, { type:"video/mp4" });  //this will convert chunks into mp4  
     //search for blob.
     if(db){
-        let dbTransaction=db.Transaction("video","readwrite")
-        
+        let VideoId= shortid();
+        console.log(VideoId);
+        let dbTransaction=db.transaction("video","readwrite");
+        let videoStore= dbTransaction.objectStore("video");
+        let videoEntry = {
+            id:VideoId,
+            blobData:blob,
+
+        }
+        videoStore.add(videoEntry);
+ 
     }
+
     let videourl=URL.createObjectURL(blob);  
 
     let a=document.createElement("a");
     a.href=videourl;
     a.download="stream.mp4";
-    a.click()
+    a.click();
 
  })
 
@@ -62,7 +75,23 @@ let tool=canvas.getContext("2d") //draw image is used to draw on canvas.
 tool.drawImage(video,0,0, canvas.width,canvas.height);
 tool.fillStyle=transparentcolor;
 tool.fillRect(0,0,canvas.width,canvas.height);
+
+
 let imageUrl=canvas.toDataURL();
+
+if(db){
+    let ImageId= shortid();
+    // console.log(VideoId);
+    let dbTransaction=db.transaction("image","readwrite");
+    let ImageStore= dbTransaction.objectStore("image");
+    let ImageEntry = {
+        id:ImageId,
+        url:imageUrl
+
+    }
+    ImageStore.add(ImageEntry);
+
+}
 let a = document.createElement("a");
 a.href=imageUrl;
 a.download="image.jpeg";

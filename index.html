@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camera_galleryApp</title>
-<link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+
+
 </head>
 <body>
 
@@ -58,10 +62,25 @@
 
 </div>
 
+<span class="material-symbols-outlined gallery">
+    gallery_thumbnail
+
+  
+    </span>
+
 
 </body>
-<script src="db.js"></script>
 
+<script src="db.js"></script>
+<script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
 <script src="script.js"></script>
+
+<script>
+    let gallery=document.querySelector(".gallery");
+    gallery.addEventListener("click",(e)=>{
+        location.assign("gallery.html");
+
+    })
+</script>
 
 </html>

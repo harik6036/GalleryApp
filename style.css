@@ -160,3 +160,22 @@ background-color:#0000ff40;
     width: 100vw;
     z-index: 1;
 }
+
+ .material-symbols-outlined{
+   /* we cannot set height and width in this. therefore we have to add another class. */
+ color: white;
+ font-size: 3rem;
+} 
+
+.gallery{
+    position: absolute;
+    right: 4rem;
+    bottom: 2rem;
+    height: 4rem;
+    width: 4rem;
+    z-index: 2;
+}
+
+.gallery:hover{
+    cursor: pointer;
+}

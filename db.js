@@ -9,15 +9,16 @@ openRequest.addEventListener("success",(e)=>{
 
 })
 
-openRequest.addEventListener("upgradeneeded",(e)=>{
-    console.log("upgrade");
-    db=openRequest.result;
-    db.createObjectStore("video",{keyPath:id});
-    db.createObjectStore("image",{keyPath:id})
-
-})
-
 openRequest.addEventListener("error",(e)=>{
     console.log("error");
 
 })
+
+openRequest.addEventListener("upgradeneeded",(e)=>{
+    console.log("upgrade");
+    db=openRequest.result;
+    db.createObjectStore("video",{keyPath: "id" } );
+    db.createObjectStore("image",{keyPath: "id" });
+
+})
+
